@@ -54,6 +54,20 @@ Two behaviors to know about:
 
 ## Docker
 
+Prebuilt multi-arch (amd64/arm64) images are published to [ghcr.io/menelsystems/certwatch](https://github.com/menelsystems/certwatch/pkgs/container/certwatch) on every push to `main`:
+
+```sh
+docker run -p 4100:4100 ghcr.io/menelsystems/certwatch:main
+```
+
+Images ship with SLSA provenance and an SBOM attached. Verify a pull came from this repo's CI:
+
+```sh
+gh attestation verify oci://ghcr.io/menelsystems/certwatch:main --owner menelsystems
+```
+
+Or build locally:
+
 ```sh
 docker build -t certwatch .
 docker run -p 4100:4100 certwatch
